@@ -19,7 +19,6 @@
             margin: 0 auto;
             border-radius: 10px;
             color: black;
-            font-size: 275%;
         }
 
         .frame{
@@ -178,16 +177,25 @@
 
     <script>
         var player = 0;
-        var r1c1 = 0;
-        var r1c2 = 0;
-        var r1c3 = 0;
-        var r2c1 = 0;
-        var r2c2 = 0;
-        var r2c3 = 0;
-        var r3c1 = 0;
-        var r3c2 = 0;
-        var r3c3 = 0;
         var gameOver = 0;
+        var rc = new Array(3);
+
+        //Create a 2 dimensional array
+        for(var i = 0; i < 3; i++){
+            rc[i] = new Array(3);            
+        }
+
+        //Function to initialize the array
+        function resetArray(){
+            for(var m = 0; m < 3; m++){
+                for(var n = 0; n < 3; n++){
+                    rc[m][n] = 0;
+                }
+            }
+        }
+    
+        //Initialize the array
+        resetArray();
 
         document.getElementById("reset").onclick = function(){
             document.getElementById("row1col1").style.backgroundColor = "gray";
@@ -224,15 +232,7 @@
             document.getElementById("result").innerHTML = "";
             
             gameOver = 0;
-            r1c1 = 0;
-            r1c2 = 0;
-            r1c3 = 0;
-            r2c1 = 0;
-            r2c2 = 0;
-            r2c3 = 0;
-            r3c1 = 0;
-            r3c2 = 0;
-            r3c3 = 0;
+            resetArray();
         }
 
         document.getElementById("row1col1").onclick = function(){
@@ -240,9 +240,9 @@
 
             if(gameOver == 0){
                 if(player == 0){
-                    if(r1c1 == 0){
+                    if(rc[0][0] == 0){
                         document.getElementById("row1col1").style.backgroundColor = "coral";
-                        r1c1 = 1;
+                        rc[0][0] = 1;
                         player = 1;
 
                         document.getElementById("r1c1rb").style.display = "block";
@@ -250,9 +250,9 @@
                     }
                 }
                 else{
-                    if(r1c1 == 0){
+                    if(rc[0][0] == 0){
                         document.getElementById("row1col1").style.backgroundColor = "white";
-                        r1c1 = 1;
+                        rc[0][0] = 1;
                         player = 0;
 
                         document.getElementById("r1c1rb").style.display = "none";
@@ -268,9 +268,9 @@
 
             if(gameOver == 0){
                 if(player == 0){
-                    if(r1c2 == 0){
+                    if(rc[0][1] == 0){
                         document.getElementById("row1col2").style.backgroundColor = "coral";
-                        r1c2 = 1;
+                        rc[0][1] = 1;
                         player = 1;
 
                         document.getElementById("r1c2rb").style.display = "block";
@@ -279,9 +279,9 @@
                     }
                 }
                 else{
-                    if(r1c2 == 0){
+                    if(rc[0][1] == 0){
                         document.getElementById("row1col2").style.backgroundColor = "white";
-                        r1c2 = 1;
+                        rc[0][1] = 1;
                         player = 0;
 
                         document.getElementById("r1c2rb").style.display = "none";
@@ -296,9 +296,9 @@
             clicked = 0;
             if(gameOver == 0){
                 if(player == 0){
-                    if(r1c3 == 0){
+                    if(rc[0][2] == 0){
                         document.getElementById("row1col3").style.backgroundColor = "coral";
-                        r1c3 = 1;
+                        rc[0][2] = 1;
                         player = 1;
 
                         document.getElementById("r1c3rb").style.display = "block";
@@ -306,9 +306,9 @@
                     }
                 }
                 else{
-                    if(r1c3 == 0){
+                    if(rc[0][2] == 0){
                         document.getElementById("row1col3").style.backgroundColor = "white";
-                        r1c3 = 1;
+                        rc[0][2] = 1;
                         player = 0;
 
                         document.getElementById("r1c3rb").style.display = "none";
@@ -323,9 +323,9 @@
             clicked = 0;
             if(gameOver == 0){
                 if(player == 0){
-                    if(r2c1 == 0){
+                    if(rc[1][0] == 0){
                         document.getElementById("row2col1").style.backgroundColor = "coral";
-                        r2c1 = 1;
+                        rc[1][0] = 1;
                         player = 1;
 
                         document.getElementById("r2c1rb").style.display = "block";
@@ -333,9 +333,9 @@
                     }
                 }
                 else{
-                    if(r2c1 == 0){
+                    if(rc[1][0] == 0){
                         document.getElementById("row2col1").style.backgroundColor = "white";
-                        r2c1 = 1;
+                        rc[1][0] = 1;
                         player = 0;
 
                         document.getElementById("r2c1rb").style.display = "none";
@@ -350,9 +350,9 @@
             clicked = 0;
             if(gameOver == 0){
                 if(player == 0){
-                    if(r2c2 == 0){
+                    if(rc[1][1] == 0){
                         document.getElementById("row2col2").style.backgroundColor = "coral";
-                        r2c2 = 1;
+                        rc[1][1] = 1;
                         player = 1;
 
                         document.getElementById("r2c2rb").style.display = "block";
@@ -360,9 +360,9 @@
                     }
                 }
                 else{
-                    if(r2c2 == 0){
+                    if(rc[1][1] == 0){
                         document.getElementById("row2col2").style.backgroundColor = "white";
-                        r2c2 = 1;
+                        rc[1][1] = 1;
                         player = 0;
 
                         document.getElementById("r2c2rb").style.display = "none";
@@ -377,9 +377,9 @@
             clicked = 0;
             if(gameOver == 0){
                 if(player == 0){
-                    if(r2c3 == 0){
+                    if(rc[1][2] == 0){
                         document.getElementById("row2col3").style.backgroundColor = "coral";
-                        r2c3 = 1;
+                        rc[1][2] = 1;
                         player = 1;
 
                         document.getElementById("r2c3rb").style.display = "block";
@@ -387,9 +387,9 @@
                     }
                 }
                 else{
-                    if(r2c3 == 0){
+                    if(rc[1][2] == 0){
                         document.getElementById("row2col3").style.backgroundColor = "white";
-                        r2c3 = 1;
+                        rc[1][2] = 1;
                         player = 0;
 
                         document.getElementById("r2c3rb").style.display = "none";
@@ -404,9 +404,9 @@
             clicked = 0;
             if(gameOver == 0){
                 if(player == 0){
-                    if(r3c1 == 0){
+                    if(rc[2][0] == 0){
                         document.getElementById("row3col1").style.backgroundColor = "coral";
-                        r3c1 = 1;
+                        rc[2][0] = 1;
                         player = 1;
 
                         document.getElementById("r3c1rb").style.display = "block";
@@ -414,9 +414,9 @@
                     }
                 }
                 else{
-                    if(r3c1 == 0){
+                    if(rc[2][0] == 0){
                         document.getElementById("row3col1").style.backgroundColor = "white";
-                        r3c1 = 1;
+                        rc[2][0] = 1;
                         player = 0;
 
                         document.getElementById("r3c1rb").style.display = "none";
@@ -431,9 +431,9 @@
             clicked = 0;
             if(gameOver == 0){
                 if(player == 0){
-                    if(r3c2 == 0){
+                    if(rc[2][1] == 0){
                         document.getElementById("row3col2").style.backgroundColor = "coral";
-                        r3c2 = 1;
+                        rc[2][1] = 1;
                         player = 1;
 
                         document.getElementById("r3c2rb").style.display = "block";
@@ -441,9 +441,9 @@
                     }
                 }
                 else{
-                    if(r3c2 == 0){
+                    if(rc[2][1] == 0){
                         document.getElementById("row3col2").style.backgroundColor = "white";
-                        r3c2 = 1;
+                        rc[2][1] = 1;
                         player = 0;
 
                         document.getElementById("r3c2rb").style.display = "none";
@@ -459,9 +459,9 @@
             clicked = 0;
             if(gameOver == 0){
                 if(player == 0){
-                    if(r3c3 == 0){
+                    if(rc[2][2] == 0){
                         document.getElementById("row3col3").style.backgroundColor = "coral";
-                        r3c3 = 1;
+                        rc[2][2] = 1;
                         player = 1;
 
                         document.getElementById("r3c3rb").style.display = "block";
@@ -469,9 +469,9 @@
                     }
                 }
                 else{
-                    if(r3c3 == 0){
+                    if(rc[2][2] == 0){
                         document.getElementById("row3col3").style.backgroundColor = "white";
-                        r3c3 = 1;
+                        rc[2][2] = 1;
                         player = 0;
 
                         document.getElementById("r3c3rb").style.display = "none";
