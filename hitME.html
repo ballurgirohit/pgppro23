@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hit ME Baby</title>
+
+    <script src="https://code.jquery.com/jquery-3.6.1.js" integrity="sha256-3zlB5s2uwoUzrXK3BT7AX3FyvojsraNFxCc2vC/7pNI=" crossorigin="anonymous"></script>
+
+    <load href="normalize.css" rel="stylesheet"></load>
+
+    <style>
+        .header{
+            width: 90%;
+            height:10px;
+            margin: 0 auto;
+        }
+
+        .header h1{
+            text-align: center;
+            margin: 0 auto;
+        }
+
+        .segment-score{
+            width: 200px;
+            height: auto;
+            margin: 0 auto;
+        }
+
+        .segment-score p{
+            text-align: center;
+        }
+
+        .segment-container{
+            width: 80%;
+            height: 400px;
+            background-color: white;
+            margin: 0 auto;
+        }
+
+        #image{
+            width: 120px;
+            height: 120px;
+            position: relative;
+            border-radius: 50%;
+            transition: 0.3s;
+        }
+    </style>
+</head>
+<body>
+    
+    <segment class="header">
+        <h1>Hit ME Baby</h1>
+    </segment>
+    
+    <div class="segment-score">
+        <p id="score">You took: </p>
+        <p id="score-best">Your best: </p>
+    </div>
+    <div id="segment-container" class="segment-container">
+        <img id="image" src="https://ballurgirohit.github.io/pgppro23/boss.jpg">
+    </div>
+
+    <script>
+        var d = new Date();
+        var time1 = d.getTime();
+        var d2;
+        var time2 = 0;
+        var time  = 0;
+        var bestTime = 1000;
+        
+        document.getElementById("image").onmouseover = function(){
+            let top = document.getElementById("image").style.top;
+            let left = document.getElementById("image").style.left;
+            let randH = Math.floor(Math.random() * 800) % parseInt($("#segment-container").css("height"), 10);
+            let randW = Math.floor(Math.random() * 800) % parseInt($("#segment-container").css("width"), 10);
+                       
+            console.log("height " + $("#segment-container").css("height"));
+            console.log("width " + $("#segment-container").css("width"));
+
+            document.getElementById("image").style.top = randH + "px";
+
+            if(randW % 2 == 0){
+                document.getElementById("image").style.left = randW + "px";
+                console.log("left " + randW);
+            }
+            else{
+                document.getElementById("image").style.right = randW + "px";
+                console.log("right " + randW);
+            }
+
+            d2 = new Date();
+            time2 = d2.getTime();
+            time = time2 - time1;
+            time1 = time2;
+
+            document.getElementById("score").innerHTML = "You took: " + time/1000 + " sec";
+
+            if(time/1000 < bestTime/1000){
+                bestTime = time;
+                document.getElementById("score-best").innerHTML = "Your best: " + bestTime/1000 + " sec";
+            }
+        }
+
+    </script>
+</body>
+</html>
