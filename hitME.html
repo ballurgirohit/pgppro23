@@ -131,8 +131,11 @@
 
             if(time/1000 < bestTime/1000){
                 bestTime = time;
-                document.getElementById("score-best").innerHTML = "Your best: " + bestTime/1000 + " sec";
+                document.getElementById("score-best").innerHTML = "Best: " + bestTime/1000 + " sec";
             }
+
+            let img = Math.floor(Math.random() * 7);
+            $("#image").attr("src","image/"+img+".jpg");            
         }
 
     </script>
