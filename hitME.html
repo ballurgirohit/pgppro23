@@ -68,25 +68,28 @@
         var d2;
         var time2 = 0;
         var time  = 0;
-        var bestTime = 1000;
+        var bestTime = time1;
         
         document.getElementById("image").onclick = function(){
-            let top = document.getElementById("image").style.top;
-            let left = document.getElementById("image").style.left;
             let randH = Math.floor(Math.random() * 800) % parseInt($("#segment-container").css("height"), 10);
             let randW = Math.floor(Math.random() * 800) % parseInt($("#segment-container").css("width"), 10);
                        
             console.log("height " + $("#segment-container").css("height"));
             console.log("width " + $("#segment-container").css("width"));
 
-            document.getElementById("image").style.top = randH + "px";
+            if(randH % 2 == 0){
+                $("#image").css("top", randH + "px");
+            }
+            else{
+                $("#image").css("bottom", randH + "px");
+            }
 
             if(randW % 2 == 0){
-                document.getElementById("image").style.left = randW + "px";
+                $("#image").css("left", randW + "px");
                 console.log("left " + randW);
             }
             else{
-                document.getElementById("image").style.right = randW + "px";
+                $("#image").css("right", randW + "px");
                 console.log("right " + randW);
             }
 
@@ -95,7 +98,8 @@
             time = time2 - time1;
             time1 = time2;
 
-            document.getElementById("score").innerHTML = "You took: " + time/1000 + " sec";
+            //document.getElementById("score").innerHTML = "You took: " + time/1000 + " sec";
+            $("#score").html("You took: " + time/1000 + " sec");
 
             if(time/1000 < bestTime/1000){
                 bestTime = time;
