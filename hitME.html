@@ -37,6 +37,7 @@
             height: 350px;
             background-color: white;
             margin: 0 auto;
+            position: fixed;
         }
 
         #image{
@@ -44,7 +45,7 @@
             height: 120px;
             position: relative;
             border-radius: 50%;
-            transition: 0.3s;
+            transition: 0.1s;
         }
     </style>
 </head>
@@ -71,34 +72,23 @@
         var bestTime = time1;
         
         document.getElementById("image").onclick = function(){
-            let randH = Math.floor(Math.random() * 800) % parseInt($("#segment-container").css("height"), 10);
-            let randW = Math.floor(Math.random() * 800) % parseInt($("#segment-container").css("width"), 10);
+            let randH = Math.floor(Math.random() * 1000) % parseInt($("#segment-container").css("height"), 10);
+            let randW = Math.floor(Math.random() * 1000) % parseInt($("#segment-container").css("width"), 10);
                        
-            console.log("height " + $("#segment-container").css("height"));
-            console.log("width " + $("#segment-container").css("width"));
+            console.log("height " + $("#segment-container").css("height") + " width " + $("#segment-container").css("width"));
 
-            if(randH % 2 == 0){
-                $("#image").css("top", randH + "px");
-            }
-            else{
-                $("#image").css("bottom", randH + "px");
-            }
+            $("#image").css("top", randH + "px");
 
-            if(randW % 2 == 0){
-                $("#image").css("left", randW + "px");
-                console.log("left " + randW);
-            }
-            else{
-                $("#image").css("right", randW + "px");
-                console.log("right " + randW);
-            }
+
+            $("#image").css("left", randW + "px");
+            console.log("left " + randW);
+
 
             d2 = new Date();
             time2 = d2.getTime();
             time = time2 - time1;
             time1 = time2;
 
-            //document.getElementById("score").innerHTML = "You took: " + time/1000 + " sec";
             $("#score").html("You took: " + time/1000 + " sec");
 
             if(time/1000 < bestTime/1000){
