@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Hit ME Baby</title>
 
-    <script src="https://code.jquery.com/jquery-3.6.1.js" integrity="sha256-3zlB5s2uwoUzrXK3BT7AX3FyvojsraNFxCc2vC/7pNI=" crossorigin="anonymous"></script>
+    <script src="jquery-3.6.1.js"></script>
 
     <load href="normalize.css" rel="stylesheet"></load>
 
@@ -33,8 +33,8 @@
         }
 
         .segment-container{
-            width: 80%;
-            height: 400px;
+            width: 70%;
+            height: 350px;
             background-color: white;
             margin: 0 auto;
         }
@@ -70,7 +70,7 @@
         var time  = 0;
         var bestTime = 1000;
         
-        document.getElementById("image").onmouseover = function(){
+        document.getElementById("image").onclick = function(){
             let top = document.getElementById("image").style.top;
             let left = document.getElementById("image").style.left;
             let randH = Math.floor(Math.random() * 800) % parseInt($("#segment-container").css("height"), 10);
