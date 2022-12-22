@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Flappy Messi</title>
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+
+    <style>
+        body{
+            font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+            text-shadow: 5px 5px 10px;
+            color: green;
+            text-align: center;
+        }
+
+        .canvas{
+            background-color: #AFE4DE;
+            background-image: url("image/ground.jpg");
+            width: 80%;
+            height: 70vh;
+            border-style:ridge;
+            border-color: gray;
+            box-shadow: 20px 20px 40px;
+            border-radius: 5%;
+        }
+
+        #header{            
+    
+        }
+
+        #hopper{
+            width: 60px;
+            height: 60px;
+            background-color: white;
+            position: absolute;
+            top:58%;
+            left:25%;
+            transition: 1s;
+            border-radius:50%;        
+            background-image: url("image/messi.jpg");    
+            box-shadow: 5px 5px 5px;
+        }
+
+        #hopper-img{
+            width: 100%;
+            height:100%;
+            border-radius: 50%;
+            user-select: none;
+        }
+
+        #wall1{
+            background-color: red;
+            width: 25px;
+            height: 18vh;
+            position: absolute;
+            top:48%;
+            left:75%;
+            border-radius: 5%;
+            transition: 2s;
+            box-shadow: 5px 5px 5px;
+        }
+        
+        #wall2{
+            background-color: red;
+            width: 25px;
+            height: 18vh;
+            position: absolute;
+            top:48%;
+            left:75%;                
+            display: none;     
+            border-radius: 5%;
+            box-shadow: 5px 5px 5px;
+        }
+
+        .wall-img{
+            width: 100%;
+            height: 100%;
+            user-select: none;
+        }
+
+        #reset{
+            width: 10%;
+            margin-top: 20px;
+            border-radius: 5%;
+            display: none;
+            background-color: red;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="page-heading text-center">
+            <h1 id="header">Flappy Messi</h1>
+            </div>
+        </div>
+
+        <h3 id="score">Score: 0</h3>
+
+        <div id="canvas" class="canvas container">
+            <div id="hopper">
+                <img id="hopper-img" src="image/messi.jpg">
+            </div>
+
+            <div id="wall1">
+                <img class="wall-img" src="image/france.jpg">
+            </div>
+
+            <div id="wall2">
+                <img class="wall-img" src="image/croatia.jpg">
+            </div>
+        </div>
+
+        <button id="reset" class="btn btn-danger">R E S E T</button>
+    </div>
+
+    <script>
+    var score = 0;
+    var gameOver = false;
+
+    $("#reset").click(function(){
+        window.location.reload();
+    })
+
+    $("#canvas").click(function(){
+        $("#hopper").css("top", "20%");
+        
+        setTimeout( function() {
+            $("#hopper").css("top", "58%");
+        }, 500);
+    })
+
+    $("#canvas").dblclick(function(){
+        $("#hopper").css("top", "20%");
+        
+        setTimeout( function() {
+            $("#hopper").css("top", "58%");
+        }, 500);
+    })
+
+    wall1();
+    function wall1(){      
+        if(gameOver == false){  
+            rand = Math.floor(Math.random() * 99);
+
+            $("#wall1").css("left", "75%");
+            $("#wall1").css("transition", "2s");
+            $("#wall1").fadeIn();
+            $("#wall1").css("left", "20%");
+            $("#wall1").fadeOut(1200, function(){
+                if(gameOver == false){
+                    score++;
+                    $("#score").html("Score: "+ score);
+                    wall2();
+                }
+            });
+        }
+    }
+
+    function wall2(){
+        if(gameOver == false){  
+            $("#wall2").css("left", "75%");
+            $("#wall2").css("transition", "2s");
+            $("#wall2").fadeIn();
+            $("#wall2").css("left", "20%");
+            $("#wall2").fadeOut(1200, function(){
+                if(gameOver == false){
+                    score++;
+                    $("#score").html("Score: "+ score);
+                    wall1();            
+                }
+            });
+        }
+    }
+
+
+    checkGameOver();
+    function checkGameOver(){
+        let wall = getActiveWall();
+        let el1;
+        let el2 = document.getElementById('hopper');;
+
+        if(wall == "#wall1"){
+            el1 = document.getElementById('wall1');
+        }
+        else{
+            el1 = document.getElementById('wall2');
+        }
+
+        if(true == elementsOverlap(el1, el2)){          
+            $("#score").html("<span style='color:red'>Score: "+ score + " Game Over!</span>");       
+            $(wall).css("animationPlayState", "paused");
+            gameOver = true;
+            score = -1;
+            $("#reset").fadeIn();
+        }
+        else{
+            setTimeout( function() {
+                checkGameOver();
+            }, 100);
+        }
+    }
+
+    function getActiveWall(){
+        if($("#wall1").css("display") == "none"){
+            console.log("#wall2");
+            return "#wall2";
+        }
+        else{
+            console.log("#wall1");
+            return "#wall1"
+        }
+
+    }
+
+    function elementsOverlap(el1, el2) {
+        const domRect1 = el1.getBoundingClientRect();
+        const domRect2 = el2.getBoundingClientRect();
+
+        return !(
+            domRect1.top > domRect2.bottom ||
+            domRect1.right < domRect2.left ||
+            domRect1.bottom < domRect2.top ||
+            domRect1.left > domRect2.right
+        );
+    }
+    </script>
+</body>
+</html>
