@@ -61,7 +61,7 @@
             top:58%;
             left:75%;
             border-radius: 5%;
-            transition: 2s;
+            transition: 3s;
             box-shadow: 5px 5px 5px;
         }
         
@@ -75,6 +75,7 @@
             display: none;     
             border-radius: 5%;
             box-shadow: 5px 5px 5px;
+            transition: 3s;
         }
 
         .wall-img{
@@ -136,6 +137,7 @@
     <script>
     var score = 0;
     var gameOver = false;
+    var speed = 3000;
 
     $("#reset").click(function(){
         window.location.reload();
@@ -163,10 +165,27 @@
             rand = Math.floor(Math.random() * 99);
 
             $("#wall1").css("left", "75%");
-            $("#wall1").css("transition", "2s");
             $("#wall1").fadeIn();
             $("#wall1").css("left", "12%");
-            $("#wall1").fadeOut(1500, function(){
+
+            if(score > 30){
+                speed = 800;
+                $("#wall1").css("transition", "1s");
+            }
+            else if(score > 20){
+                speed = 1000
+                $("#wall1").css("transition", "1.5s");
+            }
+            else if(score > 10){
+                speed = 1500;
+                $("#wall1").css("transition", "2s");
+            }
+            else if(score > 5){
+                $("#wall1").css("transition", "2.5s");
+                speed = 2000;
+            }
+
+            $("#wall1").fadeOut(speed, function(){
                 if(gameOver == false){
                     score++;
                     $("#score").html("Score: "+ score);
@@ -179,10 +198,27 @@
     function wall2(){
         if(gameOver == false){  
             $("#wall2").css("left", "75%");
-            $("#wall2").css("transition", "2s");
             $("#wall2").fadeIn();
             $("#wall2").css("left", "12%");
-            $("#wall2").fadeOut(1500, function(){
+
+            if(score > 30){
+                speed = 800;
+                $("#wall2").css("transition", "1s");
+            }
+            else if(score > 20){
+                speed = 1000
+                $("#wall2").css("transition", "1.5s");
+            }
+            else if(score > 10){
+                speed = 1500;
+                $("#wall2").css("transition", "2s");
+            }
+            else if(score > 5){
+                $("#wall2").css("transition", "2.5s");
+                speed = 2000;
+            }
+
+            $("#wall2").fadeOut(speed, function(){
                 if(gameOver == false){
                     score++;
                     $("#score").html("Score: "+ score);
