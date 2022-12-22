@@ -84,9 +84,9 @@
         }
 
         #reset{
-            width: 10%;
+            width: 20%;
             margin-top: 20px;
-            border-radius: 5%;
+            border-radius: 10%;
             display: none;
             background-color: red;
         }
@@ -94,28 +94,43 @@
 </head>
 <body>
     <div class="container">
-        <div class="page-heading text-center">
-            <h1 id="header">Flappy Messi</h1>
+        <div class="row">
+            <div class="col-xs-12">
+                <div class="page-heading text-center">
+                    <h1 id="header">Flappy Messi</h1>
+                </div>
             </div>
         </div>
 
-        <h3 id="score">Score: 0</h3>
-
-        <div id="canvas" class="canvas container">
-            <div id="hopper">
-                <img id="hopper-img" src="image/messi.jpg">
-            </div>
-
-            <div id="wall1">
-                <img class="wall-img" src="image/france.jpg">
-            </div>
-
-            <div id="wall2">
-                <img class="wall-img" src="image/croatia.jpg">
+        <div class="row">
+            <div class="col-xs-12">
+                <h3 id="score">Score: 0</h3>
             </div>
         </div>
 
-        <button id="reset" class="btn btn-danger">R E S E T</button>
+        <div class="row">
+            <div class="col-xs-12">
+                <div id="canvas" class="canvas container">
+                    <div id="hopper">
+                        <img id="hopper-img" src="image/messi.jpg">
+                    </div>
+
+                    <div id="wall1">
+                        <img class="wall-img" src="image/france.jpg">
+                    </div>
+
+                    <div id="wall2">
+                        <img class="wall-img" src="image/croatia.jpg">
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-xs-12">
+                <button id="reset" class="btn btn-danger">R E S E T</button>
+            </div>
+        </div>
     </div>
 
     <script>
