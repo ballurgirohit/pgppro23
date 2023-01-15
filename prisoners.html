@@ -51,12 +51,22 @@
             
             background-color: brown;
             color:white;
-            border-radius: 40%;
+            border-radius: 50%;
         }
 
         .game-desc{
             margin-top: 25px;
             align-items: justify;
+        }
+
+        .item{
+            align-items: center;
+         
+            display: flex;
+        }
+
+        .content{
+            align-content: center;
         }
     </style>
 </head>
@@ -64,48 +74,67 @@
     <div class="container-fluid">
         <div class="header">
             <h2>Prisoners' Dilemma</h2>
+            <div id="score">
+                <h5 id="score-round">Round: 1</h5>
+                <h5 id="score-p1">Prisoner 1: 0</h5>
+                <h5 id="score-p2">Prisoner 2: 0</h5> 
+            </div>            
         </div>
         <div class="col-xs-1">
             <div class="row">
 
             </div>
         </div>
-        <div class="col-xs-10">
-            <div class="row">
-                <div id="score">
-                    <h5 id="score-round">Round: 1</h5>
-                    <h5 id="score-p1">Prisoner 1: 0</h5>
-                    <h5 id="score-p2">Prisoner 2: 0</h5> 
-                </div>
-            </div>
-            <div class="row">
-                <div id="game">
-                    <div id="p1">
+
+        <div id="game" class="col-xs-12">
+            <div id="p1" class="row item">
+                <div class="col-xs-4">
+                    <div class="row">
                         <img class="image" src="image/prisoner1.jpg">
+                    </div>
+                </div>
+                <div class="col-xs-4">
+                    <div class="row">
                         <button id="p1-confess" class="btn btn-primary button">Confess</button>
+                    </div>
+                </div>
+                <div class="col-xs-4">
+                    <div class="row">
                         <button id="p1-confute" class="btn btn-primary button">Confute</button>
                     </div>
-                    <div id="separator">
-                        <!-- <p>-----------------------------------------------------------------------</p> -->
-                    </div>
-                    <div id="p2">
+                </div>
+            </div>
+            
+            <div id="separator" class="row item">
+                <!-- <p>-----------------------------------------------------------------------</p> -->
+            </div>
+            
+            <div id="p2" class="row item">
+                <div class="col-xs-4">
+                    <div class="row">
                         <img class="image" src="image/prisoner2.jpg">
+                    </div>
+                </div>
+                <div class="col-xs-4">
+                    <div class="row">
                         <button id="p2-confess" class="btn btn-primary button">Confess</button>
+                    </div>
+                </div>
+                <div class="col-xs-4">
+                    <div class="row">
                         <button id="p2-confute" class="btn btn-primary button">Confute</button>
                     </div>
                 </div>
             </div>
-
-            <div class="row">
-                <p class="game-desc" align="justify">The prisoner's dilemma is a classic problem in game theory that illustrates the concept of conflict and cooperation. In this scenario, two individuals are arrested and charged with a crime. They are both placed in separate cells and are unable to communicate with each other. The prosecutor offers each prisoner a deal: if one testifies against the other, they will receive a reduced sentence, while the other prisoner will receive a harsher sentence. However, if both prisoners remain silent, they will both receive a moderate sentence. The problem is that each prisoner must decide whether to betray the other or remain silent, without knowing what the other will do. The dilemma is that each prisoner would be better off betraying the other, but if both betray, they both end up worse off than if they had both remained silent.</p>
+            
+            <div id="separator" class="row item">
+                <!-- <p>-----------------------------------------------------------------------</p> -->
             </div>
 
-            <div class="col-xs-1">
-                <div class="row">
-                
-                </div>
-            </div>    
-        </div>
+            <div class="row item">
+                <p class="game-desc" align="justify">The prisoner's dilemma is a classic problem in game theory that illustrates the concept of conflict and cooperation. In this scenario, two individuals are arrested and charged with a crime. They are both placed in separate cells and are unable to communicate with each other. The prosecutor offers each prisoner a deal: if one testifies against the other, they will receive a reduced sentence, while the other prisoner will receive a harsher sentence. However, if both prisoners remain silent, they will both receive a moderate sentence. The problem is that each prisoner must decide whether to betray the other or remain silent, without knowing what the other will do. The dilemma is that each prisoner would be better off betraying the other, but if both betray, they both end up worse off than if they had both remained silent.</p>
+            </div>            
+        </div>                   
     </div>
 
     <script>
