@@ -129,7 +129,7 @@
             </div>
 
             <div class="row item">
-                <p class="game-desc" align="justify">The prisoner's dilemma is a classic problem in game theory that illustrates the concept of conflict and cooperation. In this scenario, two individuals are arrested and charged with a crime. They are both placed in separate cells and are unable to communicate with each other. The prosecutor offers each prisoner a deal: if one testifies against the other, they will receive a reduced sentence, while the other prisoner will receive a harsher sentence. However, if both prisoners remain silent, they will both receive a moderate sentence. The problem is that each prisoner must decide whether to betray the other or remain silent, without knowing what the other will do. The dilemma is that each prisoner would be better off betraying the other, but if both betray, they both end up worse off than if they had both remained silent.</p>
+                <p class="game-desc" align="justify">The prisoner's dilemma is a classic problem in game theory that illustrates the concept of conflict and cooperation. In this scenario, two individuals are arrested and charged with a crime. They are both placed in separate cells and are unable to communicate with each other. The prosecutor offers each prisoner a deal: if one testifies against the other, they will receive a reduced sentence, while the other prisoner will receive a harsher sentence. However, if both prisoners remain silent, they will both receive a moderate sentence. The problem is that each prisoner must decide whether to betray the other or remain silent, without knowing what the other will do. The dilemma is that each prisoner would be better off betraying the other, but if both betray, they both end up worse off than if they had both remained silent. Each prisoner will get an opportunity to testify 6 times. The one who earns more points will receive a reduced sentence.</p>
             </div>            
         </div>                   
     </div>
@@ -141,6 +141,7 @@
         var p2_val = 0;
         var round = 1;
         var bonus = 0;
+        var game_over = 0;
 
         $("#p1-confess").click(function(){
             p1_val = 1;
@@ -163,7 +164,7 @@
         })
 
         function checkResult(){
-            if((p1_val != 0) && (p2_val != 0)){              
+            if((p1_val != 0) && (p2_val != 0) && (game_over != 1)){              
 
                 bonus = 1;
 
@@ -206,6 +207,8 @@
                     else{
                         $("#result").html("Result: Both will receive same sentence");
                     }
+
+                    game_over = 1;
                 }                 
             }
         }
