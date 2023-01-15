@@ -31,11 +31,6 @@
             padding: 2px;
         }
 
-        #separator{
-            text-align: center;
-            color:brown;
-        }
-
         .image{
             width: 80px;
             height: 120px;
@@ -43,15 +38,16 @@
         }
 
         #separator{
-            margin: 60px;
+            margin: 20px;
         }
 
         .button{
-            margin-left: 10px;
-            
+            margin-left: 10px;           
             background-color: brown;
             color:white;
             border-radius: 50%;
+            box-shadow: 5px 5px 5px;
+            border-style: groove;
         }
 
         .game-desc{
@@ -78,6 +74,7 @@
                 <h5 id="score-round">Round: 1</h5>
                 <h5 id="score-p1">Prisoner 1: 0</h5>
                 <h5 id="score-p2">Prisoner 2: 0</h5> 
+                <h5 id="result">Result: </h5>
             </div>            
         </div>
         <div class="col-xs-1">
@@ -95,12 +92,12 @@
                 </div>
                 <div class="col-xs-4">
                     <div class="row">
-                        <button id="p1-confess" class="btn btn-primary button">Confess</button>
+                        <button id="p1-confess" class="btn btn-primary button">Silent</button>
                     </div>
                 </div>
                 <div class="col-xs-4">
                     <div class="row">
-                        <button id="p1-confute" class="btn btn-primary button">Confute</button>
+                        <button id="p1-confute" class="btn btn-primary button">Betray</button>
                     </div>
                 </div>
             </div>
@@ -117,12 +114,12 @@
                 </div>
                 <div class="col-xs-4">
                     <div class="row">
-                        <button id="p2-confess" class="btn btn-primary button">Confess</button>
+                        <button id="p2-confess" class="btn btn-primary button">Silent</button>
                     </div>
                 </div>
                 <div class="col-xs-4">
                     <div class="row">
-                        <button id="p2-confute" class="btn btn-primary button">Confute</button>
+                        <button id="p2-confute" class="btn btn-primary button">Betray</button>
                     </div>
                 </div>
             </div>
@@ -166,8 +163,8 @@
         })
 
         function checkResult(){
-            if((p1_val != 0) && (p2_val != 0)){
-                
+            if((p1_val != 0) && (p2_val != 0)){              
+
                 bonus = 1;
 
                 if((round + 1) % 3 == 0){
@@ -198,6 +195,18 @@
                 $("#score-round").html("Round: "+round);
                 $("#score-p1").html("Prisoner 1: "+p1_score);
                 $("#score-p2").html("Prisoner 2: "+p2_score);
+
+                if(round == 6){
+                    if(p1_score > p2_score){
+                        $("#result").html("Result: Prisoner 1 will receive reduced sentence");
+                    }
+                    else if(p1_score < p2_score){
+                        $("#result").html("Result: Prisoner 2 will receive reduced sentence");
+                    }
+                    else{
+                        $("#result").html("Result: Both will receive same sentence");
+                    }
+                }                 
             }
         }
     </script>
